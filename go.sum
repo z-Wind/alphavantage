@@ -1,0 +1,8 @@
+github.com/google/go-cmp v0.3.1/go.mod h1:8QqcDgzrUqlUb/G2PQTWiueGozuR1884gddMywk6iLU=
+github.com/jszwec/csvutil v1.3.0 h1:d0zzXKQYvc22b4La5Wcp97CDgQ7JDLGJLm2NWqJGEYg=
+github.com/jszwec/csvutil v1.3.0/go.mod h1:Rpu7Uu9giO9subDyMCIQfHVDuLrcaC36UA4YcJjGBkg=
+github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
+github.com/z-Wind/stock v0.0.0-20191220144915-4fbf45ebed39 h1:xaVwB6YcBUN3UJKtQYjzZjPTbcy8fXw8k4FY8UBZ9+A=
+github.com/z-Wind/stock v0.0.0-20191220144915-4fbf45ebed39/go.mod h1:PMdwlbHXAen3yIuBmCyoh/F58XwQoVenLFWwAh0X/5o=
