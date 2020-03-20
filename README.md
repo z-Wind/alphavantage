@@ -1,5 +1,5 @@
 # alphavantage - Alpha Vantage API in Go
-[![GoDoc](https://godoc.org/github.com/z-Wind/gotd?status.png)](http://godoc.org/github.com/z-Wind/alphavantage)
+[![GoDoc](https://godoc.org/github.com/z-Wind/alphavantage?status.png)](http://godoc.org/github.com/z-Wind/alphavantage)
 
 ## Table of Contents
 
