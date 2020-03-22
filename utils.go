@@ -88,8 +88,21 @@ func DecodeResponseCSV(target interface{}, res *http.Response) error {
 	if err != nil {
 		return errors.Wrapf(err, "ioutil.ReadAll")
 	}
-	//fmt.Printf("%s\n", string(b))
-	//fmt.Printf("====================================\n")
+
+	// 判斷是否有 Error Message
+	errReply := &errorReply{}
+	err = json.Unmarshal(b, errReply)
+	if err == nil && errReply.Message != "" {
+		return &Error{
+			Code:    res.StatusCode,
+			Message: errReply.Message,
+			Body:    string(b),
+			Header:  res.Header,
+		}
+	}
+
+	// fmt.Printf("%s\n", string(b))
+	// fmt.Printf("====================================\n")
 
 	return csvutil.Unmarshal(b, target)
 }

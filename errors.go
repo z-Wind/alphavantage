@@ -34,5 +34,5 @@ func (e *Error) Error() string {
 }
 
 type errorReply struct {
-	Message string `json:"error"`
+	Message string `json:"Error Message, omitempty"`
 }

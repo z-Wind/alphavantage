@@ -1,6 +1,7 @@
 package alphavantage
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -668,6 +669,8 @@ func (r *TimeSeriesService) QuoteEndpoint(symbol string) *TimeSeriesQuoteEndpoin
 			s:         r.s,
 			urlParams: url.Values{},
 		},
+
+		symbol: symbol,
 	}
 	c.urlParams.Set("function", "GLOBAL_QUOTE")
 	c.urlParams.Set("symbol", symbol)
@@ -680,6 +683,8 @@ func (r *TimeSeriesService) QuoteEndpoint(symbol string) *TimeSeriesQuoteEndpoin
 // datatype fixed to csv
 type TimeSeriesQuoteEndpointCall struct {
 	DefaultCall
+
+	symbol string
 }
 
 // func (c *TimeSeriesQuoteEndpointCall) Datatype(datatype string) *TimeSeriesQuoteEndpointCall {
@@ -698,6 +703,7 @@ func (c *TimeSeriesQuoteEndpointCall) doRequest() (*http.Response, error) {
 	var body io.Reader = nil
 	urls := ResolveRelative(c.s.BasePath)
 	urls += "?" + c.urlParams.Encode()
+	// fmt.Printf("%s\n", urls)
 	req, err := http.NewRequest("GET", urls, body)
 	if err != nil {
 		return nil, errors.Wrapf(err, "http.NewRequest")
@@ -730,6 +736,10 @@ func (c *TimeSeriesQuoteEndpointCall) Do() (*Quote, error) {
 	target := new([]*Quote)
 	if err := DecodeResponseCSV(target, res); err != nil {
 		return nil, errors.Wrapf(err, "DecodeResponseCSV")
+	}
+
+	if len((*target)) == 0 {
+		return nil, fmt.Errorf("%s could not be found", c.symbol)
 	}
 
 	ret := (*target)[0]
