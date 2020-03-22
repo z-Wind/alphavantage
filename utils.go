@@ -56,7 +56,7 @@ func CheckResponse(res *http.Response) error {
 
 	return &Error{
 		Code:    res.StatusCode,
-		Message: errReply.Message,
+		Message: errReply.String(),
 		Body:    string(b),
 		Header:  res.Header,
 	}
@@ -92,10 +92,10 @@ func DecodeResponseCSV(target interface{}, res *http.Response) error {
 	// 判斷是否有 Error Message
 	errReply := &errorReply{}
 	err = json.Unmarshal(b, errReply)
-	if err == nil && errReply.Message != "" {
+	if err == nil && errReply.String() != "" {
 		return &Error{
 			Code:    res.StatusCode,
-			Message: errReply.Message,
+			Message: errReply.String(),
 			Body:    string(b),
 			Header:  res.Header,
 		}

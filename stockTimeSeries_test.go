@@ -182,6 +182,12 @@ func TestTimeSeriesQuoteEndpointCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(av).QuoteEndpoint("VTI"), &Quote{}, false},
+		{"Test", NewTimeSeriesService(av).QuoteEndpoint("VBR"), &Quote{}, false},
+		{"Test", NewTimeSeriesService(av).QuoteEndpoint("VGK"), &Quote{}, false},
+		{"Test", NewTimeSeriesService(av).QuoteEndpoint("VPL"), &Quote{}, false},
+		{"Test", NewTimeSeriesService(av).QuoteEndpoint("BWX"), &Quote{}, false},
+		{"Test", NewTimeSeriesService(av).QuoteEndpoint("BND"), &Quote{}, false},
+		{"Test", NewTimeSeriesService(av).QuoteEndpoint("BNDX"), &Quote{}, false},
 		{"Error", NewTimeSeriesService(av).QuoteEndpoint("0050"), nil, true},
 	}
 	for _, tt := range tests {

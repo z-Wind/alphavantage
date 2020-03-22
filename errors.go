@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 // Error contains an error response from the server.
@@ -34,5 +35,17 @@ func (e *Error) Error() string {
 }
 
 type errorReply struct {
-	Message string `json:"Error Message, omitempty"`
+	Message string `json:"Error Message,omitempty"`
+	Note    string `json:"Note,omitempty"`
+}
+
+func (e *errorReply) String() string {
+	var s []string
+	if e.Message != "" {
+		s = append(s, fmt.Sprintf("Message: %s", e.Message))
+	}
+	if e.Note != "" {
+		s = append(s, fmt.Sprintf("Note: %s", e.Note))
+	}
+	return strings.Join(s, " ")
 }
