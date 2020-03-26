@@ -155,8 +155,13 @@ func ResolveRelative(basePath string, elem ...string) string {
 // parseDate parses a date value from a string.
 // An error is returned if the value is not in one of the dateFormat formats.
 func parseDate(v string, dateFormat ...string) (time.Time, error) {
+	eastern, err := time.LoadLocation("US/Eastern")
+	if err != nil {
+		panic(err)
+	}
+
 	for _, format := range dateFormat {
-		t, err := time.Parse(format, v)
+		t, err := time.ParseInLocation(format, v, eastern)
 		if err != nil {
 			continue
 		}

@@ -28,6 +28,10 @@ func (t *Time) UnmarshalCSV(data []byte) error {
 	return nil
 }
 
+func (t Time) String() string {
+	return time.Time(t).String()
+}
+
 // TimeSeries time series
 type TimeSeries struct {
 	Time   Time    `csv:"timestamp"`
@@ -93,7 +97,7 @@ type SearchResult struct {
 	Region      string  `csv:"region"`
 	MarketOpen  string  `csv:"marketOpen"`
 	MarketClose string  `csv:"marketClose"`
-	timezone    string  `csv:"timezone"`
+	Timezone    string  `csv:"timezone"`
 	Currency    string  `csv:"currency"`
 	MatchScore  float64 `csv:"matchScore"`
 }
