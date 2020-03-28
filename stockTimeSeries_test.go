@@ -176,12 +176,16 @@ func TestTimeSeriesDailyAdjCall_Do(t *testing.T) {
 		{"Test", NewTimeSeriesService(avTest).DailyAdj("symbol"), []*TimeSeries{
 			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0, SplitCoefficient: 1},
 		}, false},
+		{"Fail", NewTimeSeriesService(avReal).DailyAdj("00628.TW"), nil, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			rsp, err := tt.c.Do()
 			if (err != nil) != tt.wantErr {
 				t.Errorf("TimeSeriesDailyAdjCall.Do() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if rsp == nil {
 				return
 			}
 			got := rsp.TimeSeries
