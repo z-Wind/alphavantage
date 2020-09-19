@@ -53,7 +53,7 @@ func TestTimeSeriesIntradayCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).Intraday("Symbol", TimeSeriesIntervalOneMinute), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 16, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
+			{Time: Time(time.Date(2020, time.March, 25, 16, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
 		}, false},
 	}
 	for _, tt := range tests {
@@ -113,7 +113,7 @@ func TestTimeSeriesDailyCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).Daily("symbol"), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
+			{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
 		}, false},
 	}
 	for _, tt := range tests {
@@ -174,7 +174,7 @@ func TestTimeSeriesDailyAdjCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).DailyAdj("symbol"), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0, SplitCoefficient: 1},
+			{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0, SplitCoefficient: 1},
 		}, false},
 		{"Fail", NewTimeSeriesService(avReal).DailyAdj("00628.TW"), nil, true},
 	}
@@ -238,7 +238,7 @@ func TestTimeSeriesWeeklyCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).Weekly("symbol"), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
+			{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
 		}, false},
 	}
 	for _, tt := range tests {
@@ -297,7 +297,7 @@ func TestTimeSeriesWeeklyAdjCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).WeeklyAdj("symbol"), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0},
+			{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0},
 		}, false},
 	}
 	for _, tt := range tests {
@@ -357,7 +357,7 @@ func TestTimeSeriesMonthlyCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).Monthly("symbol"), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
+			{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.98, High: 149.1, Low: 146.16, Close: 146.86, Volume: 2666656},
 		}, false},
 	}
 	for _, tt := range tests {
@@ -417,7 +417,7 @@ func TestTimeSeriesMonthlyAdjCall_Do(t *testing.T) {
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).MonthlyAdj("symbol"), []*TimeSeries{
-			&TimeSeries{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0},
+			{Time: Time(time.Date(2020, time.March, 25, 0, 0, 0, 0, eastern)), Open: 148.91, High: 154.33, Low: 144.44, Close: 146.92, AdjustedClose: 146.92, Volume: 74091383, DividendAmount: 0},
 		}, false},
 	}
 	for _, tt := range tests {
@@ -546,7 +546,7 @@ BA,The Boeing Company,Equity,United States,09:30,16:00,UTC-05,USD,1.0000`, http.
 	}{
 		// TODO: Add test cases.
 		{"Test", NewTimeSeriesService(avTest).SearchEndpoint("BA"), []*SearchResult{
-			&SearchResult{Symbol: "BA", Name: "The Boeing Company", Type: "Equity", Region: "United States", MarketOpen: "09:30", MarketClose: "16:00", Timezone: "UTC-05", Currency: "USD", MatchScore: 1},
+			{Symbol: "BA", Name: "The Boeing Company", Type: "Equity", Region: "United States", MarketOpen: "09:30", MarketClose: "16:00", Timezone: "UTC-05", Currency: "USD", MatchScore: 1},
 		}, false},
 	}
 	for _, tt := range tests {
